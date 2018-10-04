@@ -8,7 +8,7 @@ import cv2
 
 import sys
 cur_dir = os.path.dirname(__file__)
-sys.path.insert(0, os.path.join(cur_dir, 'coco', 'PythonAPI'))
+sys.path.insert(0, os.path.join(cur_dir, 'MSCOCO', 'PythonAPI'))
 from pycocotools.coco import COCO
 
 class COCOJoints(object):
@@ -23,10 +23,10 @@ class COCOJoints(object):
         self.test_mpi = []
         for mpi, stage in zip([self.mpi, self.test_mpi], ['train', 'val']):
             if stage == 'train':
-                self._train_gt_path=os.path.join(cur_dir, 'coco', 'person_keypoints_trainvalminusminival2014.json')
+                self._train_gt_path=os.path.join(cur_dir, 'MSCOCO', 'annotations', 'person_keypoints_trainvalminusminival2014.json')
                 coco = COCO(self._train_gt_path)
             else:
-                self._val_gt_path=os.path.join(cur_dir, 'coco', 'person_keypoints_minival2014.json')
+                self._val_gt_path=os.path.join(cur_dir, 'MSCOCO', 'annotations', 'person_keypoints_minival2014.json')
                 coco = COCO(self._val_gt_path)
             if stage == 'train':
                 for aid in coco.anns.keys():
